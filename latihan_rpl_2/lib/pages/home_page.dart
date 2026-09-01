@@ -24,14 +24,15 @@ class Homepage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset("assets/images/palen.png"),
-            Text("Nama saya $nama"),
+            Text(
+              "Nama saya $nama",
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+            ),
             Text("Umur saya $umur"),
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(
-        currentIndex: 0,
-      ),
+      bottomNavigationBar: const BottomNavBar(currentIndex: 0),
     );
   }
 }
