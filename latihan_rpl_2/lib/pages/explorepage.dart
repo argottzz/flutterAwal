@@ -1,63 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 import 'home_page.dart';
-import 'explorepage.dart';
+import 'profil_page.dart';
 
-class ProfilPage extends StatefulWidget {
-  const ProfilPage({super.key});
+class AddPage extends StatefulWidget {
+  const AddPage({super.key});
 
   @override
-  State<ProfilPage> createState() => _ProfilPageState();
+  State<AddPage> createState() => _AddPageState();
 }
 
-class _ProfilPageState extends State<ProfilPage> {
-  var _currentIndex = 2; // 0: Beranda, 1: Jelajahi, 2: Profil
+class ExplorePage extends AddPage {
+  const ExplorePage({super.key});
+}
+
+class _AddPageState extends State<AddPage> {
+  var _currentIndex = 1; 
 
   void _onTap(int index) {
     if (index == _currentIndex) return;
     setState(() => _currentIndex = index);
+    // navigasi antar halaman jika diperlukan
     if (index == 0) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const Homepage()),
       );
-    } else if (index == 1) {
+    } else if (index == 2) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const AddPage()),
+        MaterialPageRoute(builder: (_) => const ProfilPage()),
       );
     }
   }
 
   Widget _buildBody() {
     switch (_currentIndex) {
-      case 2:
-        return ListView(
+      case 1:
+        return ListView.builder(
           padding: const EdgeInsets.fromLTRB(24, 24, 24, 120),
-          children: const [
-            SizedBox(height: 20),
-            Icon(Icons.person, size: 80, color: Colors.pink),
-            SizedBox(height: 16),
-            Center(
-              child: Text(
-                "Halaman Profil",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
+          itemCount: 20,
+          itemBuilder: (_, i) => Card(
+            child: ListTile(
+              leading: const Icon(Icons.explore, color: Colors.green),
+              title: Text("Jelajahi ${i + 1}"),
+              subtitle: const Text("Konten explore"),
             ),
-            SizedBox(height: 12),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.email_outlined),
-                title: Text("email@example.com"),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.badge_outlined),
-                title: Text("User Profil"),
-              ),
-            ),
-          ],
+          ),
         );
       case 0:
         return const Center(
@@ -66,25 +55,30 @@ class _ProfilPageState extends State<ProfilPage> {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         );
-      case 1:
+      case 2:
         return const Center(
           child: Text(
-            "Halaman Jelajahi",
+            "Halaman Profil",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
         );
       default:
-        return const SizedBox();
+        return const Center(
+          child: Text(
+            "Halaman Tambah",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+        );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink.shade50,
+      backgroundColor: Colors.green.shade50,
       appBar: AppBar(
-        title: const Text("Profil"),
-        backgroundColor: Colors.pink,
+        title: const Text("Jelajahi"),
+        backgroundColor: Colors.green,
         foregroundColor: Colors.white,
       ),
       body: BottomBar(
