@@ -1,19 +1,33 @@
 import 'package:flutter/material.dart';
+import 'loginpage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'pages/home_page.dart';
-import 'registerpage.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   bool togglePassword = true;
+  bool toggleConfirmPassword = true;
 
   final formKey = GlobalKey<FormState>();
+  final namaController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    namaController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 20),
 
                   Text(
-                    "Masuk ke akun anda",
+                    "Daftar Akun Anda",
                     style: GoogleFonts.delius(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
@@ -49,7 +63,27 @@ class _LoginPageState extends State<LoginPage> {
 
                   const SizedBox(height: 30),
 
+                  // Nama - tambahan untuk register, style sama persis dengan login
                   TextFormField(
+                    controller: namaController,
+                    decoration: const InputDecoration(
+                      labelText: "Nama",
+                      hintText: "Masukan Nama",
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(Icons.person_outline),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Nama wajib diisi";
+                      }
+                      return null;
+                    },
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  TextFormField(
+                    controller: emailController,
                     decoration: const InputDecoration(
                       labelText: "Email",
                       hintText: "Masukan Email",
@@ -68,6 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 16),
 
                   TextFormField(
+                    controller: passwordController,
                     obscureText: togglePassword,
                     decoration: InputDecoration(
                       labelText: "Password",
@@ -91,6 +126,43 @@ class _LoginPageState extends State<LoginPage> {
                       if (value == null || value.isEmpty) {
                         return "Password wajib diisi";
                       }
+                      if (value.length < 6) {
+                        return "Password minimal 6 karakter";
+                      }
+                      return null;
+                    },
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  TextFormField(
+                    controller: confirmPasswordController,
+                    obscureText: toggleConfirmPassword,
+                    decoration: InputDecoration(
+                      labelText: "Konfirmasi Password",
+                      hintText: "Masukan ulang Password",
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.lock_outline),
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            toggleConfirmPassword = !toggleConfirmPassword;
+                          });
+                        },
+                        icon: Icon(
+                          toggleConfirmPassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Konfirmasi password wajib diisi";
+                      }
+                      if (value != passwordController.text) {
+                        return "Password tidak sama";
+                      }
                       return null;
                     },
                   ),
@@ -103,8 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          print("Login berhasil");
-
+                          // Navigasi ke Homepage sama seperti login
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -114,7 +185,7 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       },
                       child: const Text(
-                        "Submit",
+                        "Register",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -128,17 +199,17 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Belum punya akun? "),
+                      const Text("Sudah punya akun? "),
                       TextButton(
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const RegisterPage(),
+                              builder: (context) => const LoginPage(),
                             ),
                           );
                         },
-                        child: const Text("Register"),
+                        child: const Text("Login"),
                       ),
                     ],
                   ),

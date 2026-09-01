@@ -14,16 +14,11 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
-    final data =
-        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-
-    final nama = data?["nama"] ?? "Tidak diketahui";
-    final umur = data?["umur"] ?? 0;
 
     return Scaffold(
       backgroundColor: Colors.blue.shade50,
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text("Pictaste"),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
       ),
@@ -33,7 +28,7 @@ class _HomepageState extends State<Homepage> {
           children: [
             Image.asset("assets/images/palen.png"),
             Text(
-              "Nama saya $nama",
+              "Nama saya islam",
               style: GoogleFonts.delius(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -41,7 +36,7 @@ class _HomepageState extends State<Homepage> {
               ),
             ),
             Text(
-              "Umur saya $umur",
+              "Umur saya 2010",
               style: GoogleFonts.delius(fontSize: 15),
             ),
           ],
@@ -64,13 +59,7 @@ class _HomepageState extends State<Homepage> {
           ),
 
           SalomonBottomBarItem(
-            icon: const Icon(Icons.search),
-            title: const Text("Cari"),
-            selectedColor: Colors.black,
-          ),
-
-          SalomonBottomBarItem(
-            icon: const Icon(Icons.verified_user_sharp),
+            icon: const Icon(Icons.person),
             title: const Text("Profil"),
             selectedColor: Colors.black,
           ),
