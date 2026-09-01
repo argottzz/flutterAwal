@@ -18,10 +18,10 @@ class _MyApplicationState extends State<MyApplication> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Belajar Flutter",
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        fontFamily: "RobotoSlab",
-      ),
+      // theme: ThemeData(
+      //   primarySwatch: Colors.deepPurple,
+      //   fontFamily: "RobotoSlab",
+      // ),
       home: const LoginPage(),
     );
   }
