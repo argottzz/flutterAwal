@@ -51,32 +51,28 @@ class _HomepageState extends State<Homepage> {
         currentIndex: _currentIndex,
         onTap: (i) => setState(() => _currentIndex = i),
         items: [
-          /// Home
           SalomonBottomBarItem(
             icon: const Icon(Icons.home),
-            title: const Text("Home"),
-            selectedColor: Colors.purple,
+            title: const Text("Beranda"),
+            selectedColor: Colors.black,
           ),
 
-          /// Likes
           SalomonBottomBarItem(
-            icon: const Icon(Icons.favorite_border),
-            title: const Text("Likes"),
-            selectedColor: Colors.pink,
+            icon: const Icon(Icons.explore),
+            title: const Text("Jelajahi"),
+            selectedColor: Colors.black,
           ),
 
-          /// Search
           SalomonBottomBarItem(
             icon: const Icon(Icons.search),
-            title: const Text("Search"),
-            selectedColor: Colors.orange,
+            title: const Text("Cari"),
+            selectedColor: Colors.black,
           ),
 
-          /// Profile
           SalomonBottomBarItem(
-            icon: const Icon(Icons.person),
-            title: const Text("Profile"),
-            selectedColor: Colors.teal,
+            icon: const Icon(Icons.verified_user_sharp),
+            title: const Text("Profil"),
+            selectedColor: Colors.black,
           ),
         ],
       ),
