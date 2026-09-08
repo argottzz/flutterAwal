@@ -38,6 +38,7 @@ dependencies:
   animated_bottom_navigation_bar: ^1.4.1
   salomon_bottom_bar: ^3.3.2
   flutter_floating_bottom_bar: ^2.1.0
+  http: ^1.6.0
 
 dev_dependencies:
   flutter_test:

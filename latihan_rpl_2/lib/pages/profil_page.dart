@@ -19,7 +19,7 @@ class _ProfilPageState extends State<ProfilPage> {
     if (index == 0) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const Homepage()),
+        MaterialPageRoute(builder: (_) => const HomePage()),
       );
     } else if (index == 1) {
       Navigator.pushReplacement(

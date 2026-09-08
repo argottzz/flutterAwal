@@ -15,7 +15,7 @@ class ExplorePage extends AddPage {
 }
 
 class _AddPageState extends State<AddPage> {
-  var _currentIndex = 1; 
+  var _currentIndex = 1;
 
   void _onTap(int index) {
     if (index == _currentIndex) return;
@@ -24,7 +24,7 @@ class _AddPageState extends State<AddPage> {
     if (index == 0) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const Homepage()),
+        MaterialPageRoute(builder: (_) => const HomePage()),
       );
     } else if (index == 2) {
       Navigator.pushReplacement(
